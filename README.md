@@ -3,6 +3,6 @@ portception.
 ### The license is presented in good faith
 [LGPL](./LICENSE.md) for code, [ARR](./LICENSE_ASSETS.md) for all assets.
 
-### Used bythe aconite stuidos team
+### Used by the aconite stuidos and koil mod teams
 
 #### Commits to the wiki are greatly appriciated 
