@@ -1,10 +1,8 @@
-# **Lodestone Quilt** is a rendering library, ported from the Forge [Lodestone](https://github.com/LodestarMC/Lodestone) mod.
-
-### No Fabric ports allowed by default :)
-### The license is presented in good faith, if you *really* want to make a fabric port, do contact the Lodestar team first.
+# **Lodestone Fabric** is a rendering library, ported from the Quilt [Lodestone Quilt](https://github.com/Arathain/LodestoneLib-Quilt), that was lorted from the Forge [Lodestone](https://github.com/LodestarMC/Lodestone) mod.
+-# portception.
+### The license is presented in good faith
 [LGPL](./LICENSE.md) for code, [ARR](./LICENSE_ASSETS.md) for all assets.
 
-**Used by:**<br>
-Effective<br>
-Arcpocalypse<br>
-and *at least one* in-development mod
+### Used bythe aconite stuidos team
+
+#### Commits to the wiki are greatly appriciated 
