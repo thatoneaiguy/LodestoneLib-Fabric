@@ -1,6 +1,5 @@
 package com.sammy.lodestone.systems.postprocess;
 
-import com.mojang.blaze3d.shader.GlslImportProcessor;
 import com.sammy.lodestone.LodestoneLib;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Identifier;

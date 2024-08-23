@@ -2,13 +2,12 @@ package com.sammy.lodestone.systems.postprocess;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonParseException;
-import com.mojang.blaze3d.framebuffer.Framebuffer;
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.shader.GlUniform;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.datafixers.util.Pair;
 import com.sammy.lodestone.LodestoneLib;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.GlUniform;
 import net.minecraft.client.gl.JsonEffectGlShader;
 import net.minecraft.client.gl.PostProcessShader;
 import net.minecraft.client.gl.ShaderEffect;
@@ -30,10 +29,10 @@ public abstract class PostProcessor {
 	protected static final MinecraftClient MC = MinecraftClient.getInstance();
 
 	public static final Collection<Pair<String, Consumer<GlUniform>>> COMMON_UNIFORMS = Lists.newArrayList(
-			Pair.of("cameraPos", u -> u.setVec3(new Vec3f(MC.gameRenderer.getCamera().getPos()))),
-			Pair.of("lookVector", u -> u.setVec3(MC.gameRenderer.getCamera().getHorizontalPlane())),
-			Pair.of("upVector", u -> u.setVec3(MC.gameRenderer.getCamera().getVerticalPlane())),
-			Pair.of("leftVector", u -> u.setVec3(MC.gameRenderer.getCamera().getDiagonalPlane())),
+			Pair.of("cameraPos", u -> u.set(new Vec3f(MC.gameRenderer.getCamera().getPos()))),
+			Pair.of("lookVector", u -> u.set(MC.gameRenderer.getCamera().getHorizontalPlane())),
+			Pair.of("upVector", u -> u.set(MC.gameRenderer.getCamera().getVerticalPlane())),
+			Pair.of("leftVector", u -> u.set(MC.gameRenderer.getCamera().getDiagonalPlane())),
 			Pair.of("invViewMat", u -> {
 				Matrix4f invertedViewMatrix = new Matrix4f(PostProcessor.viewModelStack.peek().getModel());
 				invertedViewMatrix.invert();

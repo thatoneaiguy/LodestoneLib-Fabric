@@ -6,15 +6,14 @@ import com.sammy.lodestone.network.screenshake.PositionedScreenshakePacket;
 import com.sammy.lodestone.network.screenshake.ScreenshakePacket;
 import com.sammy.lodestone.setup.LodestoneRenderLayers;
 import eu.midnightdust.lib.config.MidnightConfig;
-import org.quiltmc.loader.api.ModContainer;
-import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
-import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 
 import static com.sammy.lodestone.LodestoneLib.MODID;
 
 public class LodestoneLibClient implements ClientModInitializer {
 	@Override
-	public void onInitializeClient(ModContainer mod) {
+	public void onInitializeClient() {
 		MidnightConfig.init(MODID, ClientConfig.class);
 
 		LodestoneRenderLayers.yea();

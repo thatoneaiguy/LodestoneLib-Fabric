@@ -1,27 +1,40 @@
-# Gradle
+# gradle
+
 .gradle/
 build/
 out/
 classes/
 
-# Quilt Loom
-run/
+# eclipse
 
-# Eclipse
 *.launch
 
-# IntelliJ Idea
+# idea
+
 .idea/
 *.iml
 *.ipr
 *.iws
 
-# Visual Studio Code
+# vscode
+
 .settings/
 .vscode/
 bin/
 .classpath
 .project
 
-# macOS
+# macos
+
 *.DS_Store
+
+# fabric
+
+run/
+
+# java
+
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr

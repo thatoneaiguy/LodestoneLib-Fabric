@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "lodestone",
+	"version": "${version}",
+	"name": "LodestoneLib",
+	"description": "Library for all of the Lodestone team's projects, now 10% more gay, now 10% nerdier",
+	"authors": [
+		"Sammy;",
+		"Arathain",
+		"eeverest"
+	],
+	"contact": {
+		"homepage": "",
+		"sources": "https://github.com/thatoneaiguy/LodestoneLib-Fabric"
+	},
+	"license": "GNU-GPL",
+	"icon": "assets/lodestone/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.sammy.Lodestone"
+		],
+		"client": [
+			"com.sammy.LodestoneLibClient"
+		]
+	},
+	"mixins": [
+		"lodestone.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.2",
+		"minecraft": "~1.19.2",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
