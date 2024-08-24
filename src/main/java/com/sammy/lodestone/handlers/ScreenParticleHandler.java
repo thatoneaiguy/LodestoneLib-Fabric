@@ -3,7 +3,6 @@ package com.sammy.lodestone.handlers;
 
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.Tessellator;
 import com.mojang.datafixers.util.Pair;
 import com.sammy.lodestone.LodestoneLib;
 import com.sammy.lodestone.systems.rendering.particle.screen.GenericScreenParticle;
@@ -14,11 +13,13 @@ import com.sammy.lodestone.systems.rendering.particle.screen.emitter.ItemParticl
 import com.sammy.lodestone.systems.rendering.particle.screen.emitter.ParticleEmitter;
 //import dev.emi.emi.screen.RecipeScreen;
 import dev.emi.emi.screen.RecipeScreen;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.screen.GameModeSelectionScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.particle.ParticleTextureSheet;
+import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -64,7 +65,7 @@ public class ScreenParticleHandler {
 					ScreenParticle.RenderOrder renderOrder = AFTER_EVERYTHING;
 					Screen screen = minecraft.currentScreen;
 					if (screen != null) {
-						if (!QuiltLoader.isModLoaded("emi") || !(screen instanceof RecipeScreen)) {
+						if (!FabricLoader.getInstance().isModLoaded("emi") || !(screen instanceof RecipeScreen)) {
 							renderOrder = BEFORE_TOOLTIPS;
 						}
 						if (renderingHotbar) {
@@ -86,7 +87,7 @@ public class ScreenParticleHandler {
 	public static void renderParticles() {
 		final MinecraftClient client = MinecraftClient.getInstance();
 		Screen screen = client.currentScreen;
-		if (QuiltLoader.isModLoaded("emi") && screen instanceof RecipeScreen) {
+		if (FabricLoader.getInstance().isModLoaded("emi") && screen instanceof RecipeScreen) {
 			renderParticles(AFTER_EVERYTHING);
 		}
 		if (screen == null || screen instanceof ChatScreen || screen instanceof GameModeSelectionScreen) {
@@ -105,14 +106,14 @@ public class ScreenParticleHandler {
 				Map.Entry<Pair<ParticleTextureSheet, ScreenParticle.RenderOrder>, ArrayList<ScreenParticle>> next = itater.next();
 				ParticleTextureSheet type = next.getKey().getFirst();
 				if (Arrays.stream(renderOrders).anyMatch(o -> o.equals(next.getKey().getSecond()))) {
-					type.begin(TESSELATOR.getBufferBuilder(), client.getTextureManager());
+					type.begin(TESSELATOR.getBuffer(), client.getTextureManager());
 					Iterator<ScreenParticle> itetater = next.getValue().iterator();
 					while (itetater.hasNext()) {
 						ScreenParticle nex = itetater.next();
 						if (nex instanceof GenericScreenParticle genericScreenParticle) {
 							genericScreenParticle.trackStack();
 						}
-						nex.render(TESSELATOR.getBufferBuilder());
+						nex.render(TESSELATOR.getBuffer());
 					}
 					type.draw(TESSELATOR);
 				}

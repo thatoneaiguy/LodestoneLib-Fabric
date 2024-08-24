@@ -6,6 +6,7 @@ import com.sammy.lodestone.setup.LodestoneParticles;
 import com.sammy.lodestone.setup.LodestoneScreenParticles;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
+import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,7 +25,7 @@ final class MinecraftClientMixin {
 	@Inject(method = "tick", at = @At("TAIL"))
 	private void lodestone$clientTick(CallbackInfo ci) {
 		ScreenParticleHandler.clientTick();
-		ScreenshakeHandler.clientTick(MinecraftClient.getInstance().gameRenderer.getCamera(), RANDOM);
+		ScreenshakeHandler.clientTick(MinecraftClient.getInstance().gameRenderer.getCamera(), (Random) RANDOM);
 	}
 
 	@Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiler/Profiler;pop()V", ordinal = 4, shift = At.Shift.AFTER))
