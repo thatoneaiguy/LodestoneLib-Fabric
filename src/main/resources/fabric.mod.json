@@ -18,10 +18,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.sammy.Lodestone"
+			"com.sammy.lodestone.LodestoneLib"
 		],
 		"client": [
-			"com.sammy.LodestoneLibClient"
+			"com.sammy.lodestone.LodestoneLibClient"
 		]
 	},
 	"mixins": [

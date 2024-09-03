@@ -1,6 +1,10 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package com.sammy.lodestone.network.screenshake;
 
-import com.sammy.lodestone.LodestoneLib;
 import com.sammy.lodestone.handlers.ScreenshakeHandler;
 import com.sammy.lodestone.systems.rendering.particle.Easing;
 import com.sammy.lodestone.systems.screenshake.ScreenshakeInstance;
@@ -10,29 +14,36 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.util.Identifier;
 
 public class ScreenshakePacket implements Packet<ClientPlayPacketListener> {
-	public static final Identifier ID = new Identifier(LodestoneLib.MODID, "screenshake");
-
+	public static final Identifier ID = new Identifier("lodestone", "screenshake");
 	public final int duration;
-	public float intensity1, intensity2, intensity3;
-	public Easing intensityCurveStartEasing = Easing.LINEAR, intensityCurveEndEasing = Easing.LINEAR;
+	public float intensity1;
+	public float intensity2;
+	public float intensity3;
+	public Easing intensityCurveStartEasing;
+	public Easing intensityCurveEndEasing;
 
 	public ScreenshakePacket(int duration) {
+		this.intensityCurveStartEasing = Easing.LINEAR;
+		this.intensityCurveEndEasing = Easing.LINEAR;
 		this.duration = duration;
 	}
+
 	public ScreenshakePacket(PacketByteBuf buf) {
-		duration = buf.readInt();
-		intensity1 = buf.readFloat();
-		intensity2 = buf.readFloat();
-		intensity3 = buf.readFloat();
-		setEasing(Easing.valueOf(buf.readString()), Easing.valueOf(buf.readString()));
+		this.intensityCurveStartEasing = Easing.LINEAR;
+		this.intensityCurveEndEasing = Easing.LINEAR;
+		this.duration = buf.readInt();
+		this.intensity1 = buf.readFloat();
+		this.intensity2 = buf.readFloat();
+		this.intensity3 = buf.readFloat();
+		this.setEasing(Easing.valueOf(buf.readString()), Easing.valueOf(buf.readString()));
 	}
 
 	public ScreenshakePacket setIntensity(float intensity) {
-		return setIntensity(intensity, intensity);
+		return this.setIntensity(intensity, intensity);
 	}
 
 	public ScreenshakePacket setIntensity(float intensity1, float intensity2) {
-		return setIntensity(intensity1, intensity2, intensity2);
+		return this.setIntensity(intensity1, intensity2, intensity2);
 	}
 
 	public ScreenshakePacket setIntensity(float intensity1, float intensity2, float intensity3) {
@@ -54,18 +65,21 @@ public class ScreenshakePacket implements Packet<ClientPlayPacketListener> {
 		return this;
 	}
 
-	@Override
 	public void write(PacketByteBuf buf) {
-		buf.writeInt(duration);
-		buf.writeFloat(intensity1);
-		buf.writeFloat(intensity2);
-		buf.writeFloat(intensity3);
-		buf.writeString(intensityCurveStartEasing.name);
-		buf.writeString(intensityCurveEndEasing.name);
+		buf.writeInt(this.duration);
+		buf.writeFloat(this.intensity1);
+		buf.writeFloat(this.intensity2);
+		buf.writeFloat(this.intensity3);
+		buf.writeString(this.intensityCurveStartEasing.name);
+		buf.writeString(this.intensityCurveEndEasing.name);
 	}
 
 	@Override
 	public void apply(ClientPlayPacketListener listener) {
-		ScreenshakeHandler.addScreenshake(new ScreenshakeInstance(duration).setIntensity(intensity1, intensity2, intensity3).setEasing(intensityCurveStartEasing, intensityCurveEndEasing));
+
+	}
+
+	public void handle(ClientPlayPacketListener listener) {
+		ScreenshakeHandler.addScreenshake((new ScreenshakeInstance(this.duration)).setIntensity(this.intensity1, this.intensity2, this.intensity3).setEasing(this.intensityCurveStartEasing, this.intensityCurveEndEasing));
 	}
 }

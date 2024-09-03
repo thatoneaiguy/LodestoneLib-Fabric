@@ -6,16 +6,7 @@
   "mixins": [],
   "client": [
     "CameraMixin",
-    "EffectShaderMixin",
-    "FabricSpriteProviderImplAccessor",
-    "GameRendererMixin",
-    "HandledScreenMixin",
-    "InGameHudMixin",
-    "ItemRendererMixin",
-    "MinecraftClientMixin",
-    "ParticleManagerMixin",
-    "ScreenMixin",
-    "WorldRendererMixin"
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

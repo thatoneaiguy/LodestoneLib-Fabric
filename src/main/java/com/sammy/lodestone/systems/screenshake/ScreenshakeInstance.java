@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package com.sammy.lodestone.systems.screenshake;
 
 import com.sammy.lodestone.systems.rendering.particle.Easing;
@@ -5,23 +10,27 @@ import net.minecraft.client.render.Camera;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 
-
 public class ScreenshakeInstance {
-	public int progress;
 	public final int duration;
-	public float intensity1, intensity2, intensity3;
-	public Easing intensityCurveStartEasing = Easing.LINEAR, intensityCurveEndEasing = Easing.LINEAR;
+	public int progress;
+	public float intensity1;
+	public float intensity2;
+	public float intensity3;
+	public Easing intensityCurveStartEasing;
+	public Easing intensityCurveEndEasing;
 
 	public ScreenshakeInstance(int duration) {
+		this.intensityCurveStartEasing = Easing.LINEAR;
+		this.intensityCurveEndEasing = Easing.LINEAR;
 		this.duration = duration;
 	}
 
 	public ScreenshakeInstance setIntensity(float intensity) {
-		return setIntensity(intensity, intensity);
+		return this.setIntensity(intensity, intensity);
 	}
 
 	public ScreenshakeInstance setIntensity(float intensity1, float intensity2) {
-		return setIntensity(intensity1, intensity2, intensity2);
+		return this.setIntensity(intensity1, intensity2, intensity2);
 	}
 
 	public ScreenshakeInstance setIntensity(float intensity1, float intensity2, float intensity3) {
@@ -32,7 +41,7 @@ public class ScreenshakeInstance {
 	}
 
 	public ScreenshakeInstance setEasing(Easing easing) {
-		return setEasing(easing, easing);
+		return this.setEasing(easing, easing);
 	}
 
 	public ScreenshakeInstance setEasing(Easing intensityCurveStartEasing, Easing intensityCurveEndEasing) {
@@ -42,16 +51,12 @@ public class ScreenshakeInstance {
 	}
 
 	public float updateIntensity(Camera camera, Random random) {
-		progress++;
-		float percentage = progress / (float) duration;
-		if (intensity2 != intensity3) {
-			if (percentage >= 0.5f) {
-				return MathHelper.lerp(intensityCurveEndEasing.ease(percentage - 0.5f, 0, 1, 0.5f), intensity2, intensity1);
-			} else {
-				return MathHelper.lerp(intensityCurveStartEasing.ease(percentage, 0, 1, 0.5f), intensity1, intensity2);
-			}
+		++this.progress;
+		float percentage = (float)this.progress / (float)this.duration;
+		if (this.intensity2 != this.intensity3) {
+			return percentage >= 0.5F ? MathHelper.lerp(this.intensityCurveEndEasing.ease(percentage - 0.5F, 0.0F, 1.0F, 0.5F), this.intensity2, this.intensity1) : MathHelper.lerp(this.intensityCurveStartEasing.ease(percentage, 0.0F, 1.0F, 0.5F), this.intensity1, this.intensity2);
 		} else {
-			return MathHelper.lerp(intensityCurveStartEasing.ease(percentage, 0, 1, 1), intensity1, intensity2);
+			return MathHelper.lerp(this.intensityCurveStartEasing.ease(percentage, 0.0F, 1.0F, 1.0F), this.intensity1, this.intensity2);
 		}
 	}
 }
